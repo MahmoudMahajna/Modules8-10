@@ -15,14 +15,18 @@ namespace CustomerApp
             var customers = new[]
             {
                 new Customer("mahmoud", 123, "haifa"),
-                new Customer("john", 11, "tel-aviv"),
+                new Customer("John", 11, "tel-aviv"),
                 new Customer("sami", 15, "haifa"),
                 new Customer("adam", 22, "hadera"),
                 new Customer("mohammad", 132, "um-al-fahem"),
                 new Customer("maHmoud", 123, "haifa"),
                 new Customer("maHMoud", 44, "haifa"),
-                new Customer("adam", 22, "hadera"),new Customer("mahmoud", 123, "haifa"), new Customer("jon", 11, "um-al-fahem"),
-                new Customer("Ahmad", 147, "afula"),new Customer("Kamal",22,"tel-aviv"),new Customer("Xamal",22,"tel-aviv")
+                new Customer("adam", 22, "hadera"),
+                new Customer("Zahmoud", 123, "haifa"),
+                new Customer("jon", 11, "um-al-fahem"),
+                new Customer("Ahmad", 147, "afula"),
+                new Customer("Kamal",22,"tel-aviv"),
+                new Customer("Xamal",22,"tel-aviv")
             };         
             SortAndDisplayByName(customers);   
             Console.WriteLine("***************");
@@ -33,17 +37,18 @@ namespace CustomerApp
            var filteredCustomers= GetCustomers(customers, filter1);
             Console.WriteLine("Start with A-K");
            Display(filteredCustomers);
+            Console.WriteLine("*****************************************");
 
-            var filter2=new CustomerFilter(delegate(Customer customer)
+            var filter2 =new CustomerFilter(delegate(Customer customer)
             {
                 return customer.Name[0] >= 'L' && customer.Name[0] <= 'Z';
             });
-
             filteredCustomers = GetCustomers(customers, filter2);
             Console.WriteLine("Start with L-Z");
             Display(filteredCustomers);
+            Console.WriteLine("*****************************************");
 
-            var filter3=new CustomerFilter(customer=>customer.ID<100);
+            var filter3 =new CustomerFilter(customer=>customer.ID<100);
             filteredCustomers = GetCustomers(customers, filter3);
             Console.WriteLine("ID < 100");
             Display(filteredCustomers);
@@ -83,6 +88,7 @@ namespace CustomerApp
 
         public static ICollection<Customer> GetCustomers(ICollection<Customer> customers, CustomerFilter f)
         {
+
             return customers.Where(customer => f(customer)).ToList();
         }
     }
