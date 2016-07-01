@@ -12,7 +12,7 @@ namespace CustomerApp
 
         static void Main(string[] args)
         {
-            var customerArray = new[]
+            var customers = new[]
             {
                 new Customer("mahmoud", 123, "haifa"),
                 new Customer("john", 11, "tel-aviv"),
@@ -21,17 +21,13 @@ namespace CustomerApp
                 new Customer("mohammad", 132, "um-al-fahem"),
                 new Customer("maHmoud", 123, "haifa"),
                 new Customer("maHMoud", 44, "haifa"),
-                new Customer("adam", 22, "hadera")
-            };         
-            SortAndDisplayByName(customerArray);   
-            Console.WriteLine("***************");
-            SortAndDisplayById(customerArray);
-            Console.WriteLine("***********Module 8 Starts**********");
-            var customers = new[]
-            {
-                new Customer("mahmoud", 123, "haifa"), new Customer("jon", 11, "um-al-fahem"),
+                new Customer("adam", 22, "hadera"),new Customer("mahmoud", 123, "haifa"), new Customer("jon", 11, "um-al-fahem"),
                 new Customer("Ahmad", 147, "afula"),new Customer("Kamal",22,"tel-aviv"),new Customer("Xamal",22,"tel-aviv")
-            };
+            };         
+            SortAndDisplayByName(customers);   
+            Console.WriteLine("***************");
+            SortAndDisplayById(customers);
+            Console.WriteLine("***********Module 8 Starts**********");
 
            var filter1=new CustomerFilter(IsStartWithAK);
            var filteredCustomers= GetCustomers(customers, filter1);
