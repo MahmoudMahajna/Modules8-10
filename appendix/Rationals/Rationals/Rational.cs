@@ -23,20 +23,52 @@
 
         public int Denominator => _denominator;
 
-        public Rational Add(Rational r)
+        public static implicit operator double(Rational r)
         {
-            var numerator = _numerator * r.Denominator + r.Numerator * _denominator;
-            var denominator = _denominator * r.Denominator;
+            return r.Value;
+        }
+        public static implicit operator Rational(int i)
+        {
+            return new Rational(i);
+        }
+
+        public static Rational operator-(Rational r1,Rational r2)
+        {
+            var numerator = r1.Numerator * r2.Denominator - r2.Numerator * r1.Denominator;
+            var denominator = r1.Denominator * r2.Denominator;
+
+            return new Rational(numerator, denominator);
+        }
+        public static Rational operator/(Rational r1,Rational r2)
+        {
+            var numerator = r1.Numerator * r2.Denominator ;
+            var denominator = r1.Denominator * r2.Numerator;
+
+            return new Rational(numerator, denominator);
+        }
+        public static Rational operator+(Rational r1,Rational r2)
+        {
+            var numerator = r1.Numerator * r2.Denominator + r2.Numerator * r1.Denominator;
+            var denominator = r1.Denominator * r2.Denominator;
+
+            return new Rational(numerator, denominator);
+        }
+        public static Rational operator *(Rational r1, Rational r2)
+        {
+            var numerator = r1.Numerator * r2.Numerator;
+            var denominator = r1.Denominator * r2.Denominator;
 
             return new Rational(numerator, denominator);
         }
 
+        public Rational Add(Rational r)
+        {
+            return this + r;
+        }
+        
         public Rational Mul(Rational r)
         {
-            var numerator = _numerator * r.Numerator;
-            var denominator = _denominator * r.Denominator;
-
-            return new Rational(numerator, denominator);
+            return this * r;
         }
 
         public void Reduce()
