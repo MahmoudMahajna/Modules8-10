@@ -22,7 +22,14 @@ namespace FileFinder
             List<FileInfo> files = new List<FileInfo>();
             foreach (FileInfo file in _directoryFiles)
             {
-                var fileReader = file.OpenText();
+                /**Bug: you are not disposing of the stream reader
+             * Consider this:
+             * https://msdn.microsoft.com/en-us/library/3bwa4xa9(v=vs.110).aspx
+             */
+
+                //I changed the variable name so that you will see its type clearly
+                //Always know exactly what you are doing
+                StreamReader fileReader = file.OpenText();
                 var fileText = fileReader.ReadToEnd();
                 if (fileText.Contains(str))
                     files.Add(file);
