@@ -41,6 +41,7 @@ namespace CustomerApp
 
             var filter2 =new CustomerFilter(delegate(Customer customer)
             {
+                //What abut small letters?
                 return customer.Name[0] >= 'L' && customer.Name[0] <= 'Z';
             });
             filteredCustomers = GetCustomers(customers, filter2);
@@ -54,6 +55,7 @@ namespace CustomerApp
             Display(filteredCustomers);
         }
 
+        //Cool.
         private static void Display(ICollection<Customer> filteredCustomers)
         {
             foreach (var customer in filteredCustomers)
@@ -64,6 +66,7 @@ namespace CustomerApp
 
         static bool IsStartWithAK(Customer customer)
         {           
+            //What about small letters? 
             return customer.Name[0]>='A' && customer.Name[0]<='K';
         }
         private static void SortAndDisplayByName(Customer[] customerArray )
@@ -86,8 +89,19 @@ namespace CustomerApp
         }
         public delegate bool CustomerFilter(Customer customer);
 
+        //Whell, this is a sort of cheating...hmmm..I'll allow it
+        //YOu should have went with IEnumerable and yield
         public static ICollection<Customer> GetCustomers(ICollection<Customer> customers, CustomerFilter f)
         {
+            //foreach (var customer in customers)
+            //{
+            //    if (filter(customer))
+            //    {
+            //        yield return customer;
+            //    }
+            //}
+
+            //Linq is implemented like this.
 
             return customers.Where(customer => f(customer)).ToList();
         }
