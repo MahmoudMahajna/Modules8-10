@@ -4,6 +4,7 @@ using System.Threading;
 
 namespace MailSystem
 {
+    //Awesome work
     class Program
     {
         private static void Main()
